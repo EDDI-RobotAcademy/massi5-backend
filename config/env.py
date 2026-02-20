@@ -10,6 +10,10 @@ def load_env() -> None:
     .env 파일을 1회 로드한다.
     Service 및 Controller에서는 이 함수를 호출하지 않고,
     애플리케이션 엔트리포인트에서만 호출한다.
+
+    로드되는 주요 변수:
+    - KAKAO_CLIENT_ID, KAKAO_REDIRECT_URI, KAKAO_CLIENT_SECRET (Kakao OAuth)
+    - DATABASE_URL (PostgreSQL 연결 문자열)
     """
     env_path = Path(__file__).resolve().parent.parent / ".env"
     load_dotenv(dotenv_path=env_path)

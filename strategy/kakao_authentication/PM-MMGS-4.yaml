@@ -1,4 +1,4 @@
-feature_id: PM-JIHYUN-4
+feature_id: PM-MMGS-4
 title: "발급 받은 액세스 토큰으로 Kakao 사용자 정보 조회"
 
 domain: kakao_authentication

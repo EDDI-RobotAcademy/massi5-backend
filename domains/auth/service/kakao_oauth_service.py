@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 
-from kakao_authentication.schemas import AccessTokenResponse, KakaoUserInfo, OAuthLinkResponse
+from domains.auth.schemas import AccessTokenResponse, KakaoUserInfo, OAuthLinkResponse
 
 
 class KakaoAuthServiceInterface(ABC):
