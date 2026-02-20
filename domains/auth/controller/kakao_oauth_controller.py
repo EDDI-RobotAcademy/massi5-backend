@@ -3,8 +3,8 @@
 import httpx
 from fastapi import HTTPException, Query
 
-from kakao_authentication.schemas import AccessTokenResponse, KakaoUserInfo, OAuthLinkResponse
-from kakao_authentication.service.kakao_oauth_service import KakaoAuthServiceInterface
+from domains.auth.schemas import AccessTokenResponse, KakaoUserInfo, OAuthLinkResponse
+from domains.auth.service.kakao_oauth_service import KakaoAuthServiceInterface
 
 
 class KakaoAuthController:
@@ -14,7 +14,7 @@ class KakaoAuthController:
         self._service = service
 
     def get_oauth_link(self) -> OAuthLinkResponse:
-        """GET /kakao-authentication/request-oauth-link: 인증 URL 반환 (PM-JIHYUN-2)."""
+        """GET /auth/request-oauth-link: 인증 URL 반환 (PM-JIHYUN-2)."""
         try:
             return self._service.get_authorization_url()
         except ValueError as e:
@@ -24,7 +24,7 @@ class KakaoAuthController:
         self,
         code: str = Query(..., description="Kakao 인증 후 전달된 인가 코드"),
     ) -> AccessTokenResponse:
-        """GET /kakao-authentication/request-access-token-after-redirection: 인가 코드로 토큰 발급 (PM-JIHYUN-3)."""
+        """GET /auth/request-access-token-after-redirection: 인가 코드로 토큰 발급 (PM-JIHYUN-3)."""
         try:
             return self._service.request_access_token(code=code)
         except ValueError as e:
@@ -39,7 +39,7 @@ class KakaoAuthController:
         self,
         access_token: str = Query(..., description="Kakao 액세스 토큰"),
     ) -> KakaoUserInfo:
-        """GET /kakao-authentication/user-info: 액세스 토큰으로 사용자 정보 조회 (PM-JIHYUN-4)."""
+        """GET /auth/user-info: 액세스 토큰으로 사용자 정보 조회 (PM-JIHYUN-4)."""
         try:
             return self._service.get_user_info(access_token=access_token)
         except ValueError as e:

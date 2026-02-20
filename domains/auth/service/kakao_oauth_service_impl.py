@@ -5,8 +5,8 @@ from urllib.parse import urlencode
 
 import httpx
 
-from kakao_authentication.schemas import AccessTokenResponse, KakaoUserInfo, OAuthLinkResponse
-from kakao_authentication.service.kakao_oauth_service import KakaoAuthServiceInterface
+from domains.auth.schemas import AccessTokenResponse, KakaoUserInfo, OAuthLinkResponse
+from domains.auth.service.kakao_oauth_service import KakaoAuthServiceInterface
 
 # Kakao OAuth 상수 (코드에 하드코딩되는 것은 엔드포인트 URL만 해당)
 KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize"
