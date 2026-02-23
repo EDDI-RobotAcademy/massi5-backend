@@ -20,5 +20,7 @@ class User(SQLModel, table=True):
     email: Optional[str] = Field(default=None, max_length=255)
     nickname: Optional[str] = Field(default=None, max_length=100)
     profile_image_url: Optional[str] = Field(default=None, max_length=512)
+    is_lunch_alarm_on: bool = Field(default=True, description="점심 알림 ON/OFF")
+    is_report_alarm_on: bool = Field(default=True, description="리포트 알림 ON/OFF")
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
