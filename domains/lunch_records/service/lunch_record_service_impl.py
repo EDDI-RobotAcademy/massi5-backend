@@ -14,7 +14,11 @@ class LunchRecordServiceImpl(LunchRecordServiceInterface):
         record = LunchRecord(
             user_id=user_id,
             recorded_at=data.recorded_at,
-            content=data.content,
+            photo_url=data.photo_url,
+            menu_name=data.menu_name,
+            category=data.category,
+            meal_type=data.meal_type,
+            rating=data.rating,
         )
         db.add(record)
         db.commit()
@@ -22,6 +26,10 @@ class LunchRecordServiceImpl(LunchRecordServiceInterface):
         return LunchRecordResponse(
             id=record.id,
             user_id=record.user_id,
-            recorded_at=record.recorded_at,
-            content=record.content,
+            photo_url=record.photo_url,
+            menu_name=record.menu_name,
+            category=record.category,
+            meal_type=record.meal_type,
+            rating=record.rating,
+            created_at=record.created_at,
         )

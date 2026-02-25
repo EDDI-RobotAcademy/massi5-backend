@@ -1,6 +1,6 @@
 """Lunch records 도메인 요청/응답 스키마."""
 
-from datetime import date
+from datetime import date, datetime
 from typing import Optional
 
 from pydantic import BaseModel, Field
@@ -9,8 +9,12 @@ from pydantic import BaseModel, Field
 class LunchRecordCreate(BaseModel):
     """점심 기록 생성 요청."""
 
-    recorded_at: date = Field(..., description="기록한 날짜")
-    content: Optional[str] = Field(None, max_length=2000)
+    recorded_at: date = Field(..., description="기록 날짜")
+    photo_url: Optional[str] = Field(default=None, max_length=512, description="음식 사진 주소")
+    menu_name: str = Field(..., max_length=100, description="메뉴 이름")
+    category: str = Field(..., max_length=50, description="음식 종류")
+    meal_type: str = Field(..., max_length=50, description="식사 유형")
+    rating: int = Field(..., ge=1, le=5, description="만족도 (별점)")
 
 
 class LunchRecordResponse(BaseModel):
@@ -18,8 +22,12 @@ class LunchRecordResponse(BaseModel):
 
     id: int
     user_id: int
-    recorded_at: date
-    content: Optional[str] = None
+    photo_url: Optional[str] = None
+    menu_name: str
+    category: str
+    meal_type: str
+    rating: int
+    created_at: datetime
 
     class Config:
         from_attributes = True
