@@ -22,6 +22,7 @@ class LunchRecordResponse(BaseModel):
 
     id: int
     user_id: int
+    recorded_at: date
     photo_url: Optional[str] = None
     menu_name: str
     category: str
@@ -31,3 +32,35 @@ class LunchRecordResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class LunchRecordDateGroupResponse(BaseModel):
+    """특정 날짜 점심 기록 조회 응답."""
+
+    date: date
+    count: int
+    records: list[LunchRecordResponse]
+
+
+class LunchRecordTodayResponse(BaseModel):
+    """홈 화면의 오늘 기록 조회 응답."""
+
+    date: date
+    has_record: bool
+    count: int
+    records: list[LunchRecordResponse]
+
+
+class LunchRecordCalendarDay(BaseModel):
+    """달력 표시용 날짜별 집계."""
+
+    date: date
+    count: int
+
+
+class LunchRecordCalendarResponse(BaseModel):
+    """달력 뷰 응답."""
+
+    year: int
+    month: int
+    days: list[LunchRecordCalendarDay]
